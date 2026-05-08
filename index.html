@@ -559,6 +559,9 @@ footer{padding:56px 60px;border-top:1px solid var(--gbd)}
           </div>
           <button type="submit" class="btn btn-p form-submit">Envoyer le message →</button>
         </form>
+        <div id="form-success" style="display:none;margin-top:20px;padding:20px;background:rgba(200,168,75,.1);border:1px solid var(--gbd);border-radius:4px;text-align:center">
+          <p style="color:var(--g);font-size:14px;margin:0">Message envoyé avec succès. Nous vous répondrons dans les plus brefs délais.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -605,6 +608,33 @@ footer{padding:56px 60px;border-top:1px solid var(--gbd)}
 </footer>
 
 <script>
+const contactForm = document.querySelector('form[action*="formspree"]');
+if(contactForm) {
+  contactForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = contactForm.querySelector('button[type="submit"]');
+    btn.textContent = 'Envoi en cours...';
+    btn.disabled = true;
+    try {
+      const res = await fetch(contactForm.action, {
+        method: 'POST',
+        body: new FormData(contactForm),
+        headers: { 'Accept': 'application/json' }
+      });
+      if(res.ok) {
+        contactForm.style.display = 'none';
+        document.getElementById('form-success').style.display = 'block';
+      } else {
+        btn.textContent = 'Envoyer le message →';
+        btn.disabled = false;
+      }
+    } catch(err) {
+      btn.textContent = 'Envoyer le message →';
+      btn.disabled = false;
+    }
+  });
+}
+
 function toggleMenu(){
   document.getElementById('mobileMenu').classList.toggle('open');
   document.body.style.overflow = document.getElementById('mobileMenu').classList.contains('open') ? 'hidden' : '';
