@@ -254,7 +254,11 @@ footer{padding:56px 60px;border-top:1px solid var(--gbd)}
     <li><a href="#impact">Impact</a></li>
     <li><a href="#mambudget">MamBudget</a></li>
   </ul>
-  <a href="#contact" class="nav-cta btn btn-p">Nous contacter</a>
+  <div style="display:flex;align-items:center;gap:10px">
+    <button onclick="setLang('fr')" id="btn-fr" style="font-family:var(--fm);font-size:10px;letter-spacing:.16em;padding:6px 10px;background:transparent;border:1px solid var(--gbd);border-radius:2px;color:var(--g);cursor:pointer;transition:all .3s">FR</button>
+    <button onclick="setLang('en')" id="btn-en" style="font-family:var(--fm);font-size:10px;letter-spacing:.16em;padding:6px 10px;background:transparent;border:1px solid var(--gbd);border-radius:2px;color:var(--txm);cursor:pointer;transition:all .3s">EN</button>
+    <a href="#contact" class="nav-cta btn btn-p" data-fr="Nous contacter" data-en="Contact us">Nous contacter</a>
+  </div>
   <div class="nav-burger" onclick="toggleMenu()">
     <span></span><span></span><span></span>
   </div>
@@ -274,12 +278,12 @@ footer{padding:56px 60px;border-top:1px solid var(--gbd)}
 <!-- ── HERO ── -->
 <section id="hero">
   <div class="hero-bg"></div>
-  <span class="hero-eyebrow">Burkina Faso — 2026</span>
-  <h1>Capital patient.<br><span class="italic">Impact réel.</span></h1>
-  <p class="hero-desc">KAYODE KAPITAL finance et accompagne les PME burkinabè qui n'ont pas encore accès au capital qu'elles méritent.</p>
+  <span class="hero-eyebrow" data-fr="Burkina Faso — 2026" data-en="Burkina Faso — 2026">Burkina Faso — 2026</span>
+  <h1 data-fr='Capital patient.<br><span class="italic">Impact réel.</span>' data-en='Patient capital.<br><span class="italic">Real impact.</span>'>Capital patient.<br><span class="italic">Impact réel.</span></h1>
+  <p class="hero-desc" data-fr="KAYODE KAPITAL finance et accompagne les PME burkinabè qui n'ont pas encore accès au capital qu'elles méritent." data-en="KAYODE KAPITAL finances and supports Burkinabe SMEs that don't yet have access to the capital they deserve.">KAYODE KAPITAL finance et accompagne les PME burkinabè qui n'ont pas encore accès au capital qu'elles méritent.</p>
   <div class="hero-ctas">
-    <a href="#fonds" class="btn btn-p">Je suis investisseur →</a>
-    <a href="#approche" class="btn btn-s">Je cherche un financement</a>
+    <a href="#fonds" class="btn btn-p" data-fr="Je suis investisseur →" data-en="I am an investor →">Je suis investisseur →</a>
+    <a href="#approche" class="btn btn-s" data-fr="Je cherche un financement" data-en="I am looking for funding">Je cherche un financement</a>
   </div>
   <div class="hero-scroll">
     <span>Découvrir</span>
@@ -520,9 +524,6 @@ footer{padding:56px 60px;border-top:1px solid var(--gbd)}
     <p class="reveal" style="max-width:640px;font-size:16px;margin-bottom:16px">Développé pour les entrepreneurs que nous accompagnons — et pour tous. MamBudget est une application de gestion financière personnelle et professionnelle, disponible sur mobile et ordinateur.</p>
     <p class="reveal" style="max-width:640px;font-size:14px;margin-bottom:48px;color:var(--g)">30 jours d'essai gratuit · Sans engagement · Résiliation à tout moment</p>
 
-    <div class="reveal" style="margin-bottom:56px;border-radius:8px;overflow:hidden;border:1px solid var(--gbd)">
-      <img src="mambudget-screen.png" alt="MamBudget aperçu" style="width:100%;display:block;object-fit:cover;max-height:300px">
-    </div>
 
     <div class="cards reveal" style="margin-bottom:16px">
 
@@ -722,6 +723,57 @@ document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click
 window.addEventListener('scroll', () => {
   document.getElementById('navbar').style.background = window.scrollY > 80 ? 'rgba(13,13,26,.98)' : 'rgba(13,13,26,.95)';
 });
+
+const translations = {
+  fr: {
+    'nav-fonds': 'Les Poches d\'investissement',
+    'nav-approche': 'Notre Approche',
+    'nav-impact': 'Impact',
+    'nav-mambudget': 'MamBudget',
+    'nav-contact': 'Nous contacter',
+    'hero-eyebrow': 'Burkina Faso — 2026',
+    'hero-h1': 'Capital patient.<br><span class="italic">Impact réel.</span>',
+    'hero-desc': 'KAYODE KAPITAL finance et accompagne les PME burkinabè qui n\'ont pas encore accès au capital qu\'elles méritent.',
+    'hero-cta1': 'Je suis investisseur →',
+    'hero-cta2': 'Je cherche un financement',
+    'contact-cta': 'Nous contacter',
+  },
+  en: {
+    'nav-fonds': 'Investment Pockets',
+    'nav-approche': 'Our Approach',
+    'nav-impact': 'Impact',
+    'nav-mambudget': 'MamBudget',
+    'nav-contact': 'Contact us',
+    'hero-eyebrow': 'Burkina Faso — 2026',
+    'hero-h1': 'Patient capital.<br><span class="italic">Real impact.</span>',
+    'hero-desc': 'KAYODE KAPITAL finances and supports Burkinabe SMEs that don\'t yet have access to the capital they deserve.',
+    'hero-cta1': 'I am an investor →',
+    'hero-cta2': 'I am looking for funding',
+    'contact-cta': 'Contact us',
+  }
+};
+
+function setLang(lang) {
+  document.querySelectorAll('[data-fr]').forEach(el => {
+    el.innerHTML = lang === 'fr' ? el.dataset.fr : el.dataset.en;
+  });
+  document.getElementById('btn-fr').style.color = lang === 'fr' ? 'var(--g)' : 'var(--txm)';
+  document.getElementById('btn-en').style.color = lang === 'en' ? 'var(--g)' : 'var(--txm)';
+  document.getElementById('btn-fr').style.borderColor = lang === 'fr' ? 'var(--g)' : 'var(--gbd)';
+  document.getElementById('btn-en').style.borderColor = lang === 'en' ? 'var(--g)' : 'var(--gbd)';
+  localStorage.setItem('lang', lang);
+}
+
+const savedLang = localStorage.getItem('lang') || 'fr';
+setLang(savedLang);
 </script>
+
+<!-- WhatsApp Button -->
+<a href="https://wa.me/22605071111?text=Bonjour%2C%20je%20vous%20contacte%20depuis%20le%20site%20kayodekapital.com" target="_blank"
+   style="position:fixed;bottom:28px;right:28px;z-index:999;width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:transform .3s"
+   onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
 </body>
 </html>
