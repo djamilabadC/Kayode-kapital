@@ -249,15 +249,15 @@ footer{padding:56px 60px;border-top:1px solid var(--gbd)}
     <span class="nav-logo-text">KAYODE KAPITAL</span>
   </a>
   <ul class="nav-links">
-    <li><a href="#fonds">Les Poches d'investissement</a></li>
-    <li><a href="#approche">Notre Approche</a></li>
-    <li><a href="#impact">Impact</a></li>
+    <li><a href="#fonds" data-key="nav-fonds">Les Poches d'investissement</a></li>
+    <li><a href="#approche" data-key="nav-approche">Notre Approche</a></li>
+    <li><a href="#impact" data-key="nav-impact">Impact</a></li>
     <li><a href="#mambudget">MamBudget</a></li>
   </ul>
   <div style="display:flex;align-items:center;gap:10px">
     <button onclick="setLang('fr')" id="btn-fr" style="font-family:var(--fm);font-size:10px;letter-spacing:.16em;padding:6px 10px;background:transparent;border:1px solid var(--gbd);border-radius:2px;color:var(--g);cursor:pointer;transition:all .3s">FR</button>
     <button onclick="setLang('en')" id="btn-en" style="font-family:var(--fm);font-size:10px;letter-spacing:.16em;padding:6px 10px;background:transparent;border:1px solid var(--gbd);border-radius:2px;color:var(--txm);cursor:pointer;transition:all .3s">EN</button>
-    <a href="#contact" class="nav-cta btn btn-p" data-fr="Nous contacter" data-en="Contact us">Nous contacter</a>
+    <a href="#contact" class="nav-cta btn btn-p" data-key="nav-contact">Nous contacter</a>
   </div>
   <div class="nav-burger" onclick="toggleMenu()">
     <span></span><span></span><span></span>
@@ -267,26 +267,25 @@ footer{padding:56px 60px;border-top:1px solid var(--gbd)}
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
   <span class="mobile-close" onclick="toggleMenu()">Fermer ×</span>
-  <a href="#fonds" onclick="toggleMenu()">Le Fonds</a>
-  <a href="#approche" onclick="toggleMenu()">Notre Approche</a>
-  <a href="#impact" onclick="toggleMenu()">Impact</a>
+  <a href="#fonds" onclick="toggleMenu()" data-key="nav-fonds">Les Poches d'investissement</a>
+  <a href="#approche" onclick="toggleMenu()" data-key="nav-approche">Notre Approche</a>
+  <a href="#impact" onclick="toggleMenu()" data-key="nav-impact">Impact</a>
   <a href="#mambudget" onclick="toggleMenu()">MamBudget</a>
-  <a href="#equipe" onclick="toggleMenu()">Équipe</a>
-  <a href="#contact" onclick="toggleMenu()" class="btn btn-p" style="font-size:16px;padding:14px 36px">Nous contacter</a>
+  <a href="#contact" onclick="toggleMenu()" class="btn btn-p" style="font-size:16px;padding:14px 36px" data-key="nav-contact">Nous contacter</a>
 </div>
 
 <!-- ── HERO ── -->
 <section id="hero">
   <div class="hero-bg"></div>
-  <span class="hero-eyebrow" data-fr="Burkina Faso — 2026" data-en="Burkina Faso — 2026">Burkina Faso — 2026</span>
-  <h1 data-fr='Capital patient.<br><span class="italic">Impact réel.</span>' data-en='Patient capital.<br><span class="italic">Real impact.</span>'>Capital patient.<br><span class="italic">Impact réel.</span></h1>
-  <p class="hero-desc" data-fr="KAYODE KAPITAL finance et accompagne les PME burkinabè qui n'ont pas encore accès au capital qu'elles méritent." data-en="KAYODE KAPITAL finances and supports Burkinabe SMEs that don't yet have access to the capital they deserve.">KAYODE KAPITAL finance et accompagne les PME burkinabè qui n'ont pas encore accès au capital qu'elles méritent.</p>
+  <span class="hero-eyebrow" data-key="hero-eyebrow">Burkina Faso — 2026</span>
+  <h1 data-key="hero-h1">Capital patient.<br><span class="italic">Impact réel.</span></h1>
+  <p class="hero-desc" data-key="hero-desc">KAYODE KAPITAL finance et accompagne les PME burkinabè qui n'ont pas encore accès au capital qu'elles méritent.</p>
   <div class="hero-ctas">
-    <a href="#fonds" class="btn btn-p" data-fr="Je suis investisseur →" data-en="I am an investor →">Je suis investisseur →</a>
-    <a href="#approche" class="btn btn-s" data-fr="Je cherche un financement" data-en="I am looking for funding">Je cherche un financement</a>
+    <a href="#fonds" class="btn btn-p" data-key="hero-cta1">Je suis investisseur →</a>
+    <a href="#approche" class="btn btn-s" data-key="hero-cta2">Je cherche un financement</a>
   </div>
   <div class="hero-scroll">
-    <span>Découvrir</span>
+    <span data-key="hero-scroll">Découvrir</span>
     <div class="hero-scroll-line"></div>
   </div>
   <div class="hero-line"></div>
@@ -728,38 +727,36 @@ window.addEventListener('scroll', () => {
   document.getElementById('navbar').style.background = window.scrollY > 80 ? 'rgba(13,13,26,.98)' : 'rgba(13,13,26,.95)';
 });
 
-const translations = {
+const T = {
   fr: {
-    'nav-fonds': 'Les Poches d\'investissement',
+    'nav-fonds': "Les Poches d'investissement",
     'nav-approche': 'Notre Approche',
     'nav-impact': 'Impact',
-    'nav-mambudget': 'MamBudget',
     'nav-contact': 'Nous contacter',
     'hero-eyebrow': 'Burkina Faso — 2026',
     'hero-h1': 'Capital patient.<br><span class="italic">Impact réel.</span>',
-    'hero-desc': 'KAYODE KAPITAL finance et accompagne les PME burkinabè qui n\'ont pas encore accès au capital qu\'elles méritent.',
+    'hero-desc': "KAYODE KAPITAL finance et accompagne les PME burkinabè qui n'ont pas encore accès au capital qu'elles méritent.",
     'hero-cta1': 'Je suis investisseur →',
     'hero-cta2': 'Je cherche un financement',
-    'contact-cta': 'Nous contacter',
+    'hero-scroll': 'Découvrir',
   },
   en: {
     'nav-fonds': 'Investment Pockets',
     'nav-approche': 'Our Approach',
     'nav-impact': 'Impact',
-    'nav-mambudget': 'MamBudget',
     'nav-contact': 'Contact us',
     'hero-eyebrow': 'Burkina Faso — 2026',
     'hero-h1': 'Patient capital.<br><span class="italic">Real impact.</span>',
-    'hero-desc': 'KAYODE KAPITAL finances and supports Burkinabe SMEs that don\'t yet have access to the capital they deserve.',
+    'hero-desc': "KAYODE KAPITAL finances and supports Burkinabe SMEs that don't yet have access to the capital they deserve.",
     'hero-cta1': 'I am an investor →',
     'hero-cta2': 'I am looking for funding',
-    'contact-cta': 'Contact us',
+    'hero-scroll': 'Discover',
   }
 };
 
 function setLang(lang) {
-  document.querySelectorAll('[data-fr]').forEach(el => {
-    el.innerHTML = lang === 'fr' ? el.dataset.fr : el.dataset.en;
+  document.querySelectorAll('[data-key]').forEach(el => {
+    if(T[lang][el.dataset.key]) el.innerHTML = T[lang][el.dataset.key];
   });
   document.getElementById('btn-fr').style.color = lang === 'fr' ? 'var(--g)' : 'var(--txm)';
   document.getElementById('btn-en').style.color = lang === 'en' ? 'var(--g)' : 'var(--txm)';
